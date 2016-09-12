@@ -19,7 +19,7 @@ background: #f3f3f3;
  top: 0px;
  height: 90px;
  width: 100%;
- position: fixed;
+ position: absolute;
  border: 2px solid #d3d3d3;
 }
 
@@ -95,11 +95,11 @@ position: absolute;
 <canvas id="navbar">
 Your browser does not support the HTML5 canvas tag.</canvas>
 
-<div id= "navop1" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "calldashboard()"><p></br>&nbsp &nbsp &nbsp dashboard</p></div>
+<div id= "navop1" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "calldashboard()"><p style="text-align: center;"></br>dashboard</p></div>
 
-<div id= "navop2" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "loadYulu()"><p></br>&nbsp &nbsp &nbsp &nbsp Aå›è¯­å½•</p></div>
+<div id= "navop2" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "loadYulu()"><p style="text-align: center;"></br>A¾ıÓïÂ¼</p></div>
 
-<div id="db" >
+<div id="db">
 <button id="buton1" onclick="playgame()">play a game</button>
 </div>
 
@@ -169,7 +169,7 @@ hidedashboard(d);
 };
 
 function tiankeng(){
-alert("å¹³å“¥å¡«å‘");
+alert("Æ½¸çÌî¿Ó");
 
 };
 
