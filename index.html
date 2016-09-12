@@ -1,193 +1,38 @@
 <!DOCTYPE html>
 <html>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style>
-#pic{        /*logo*/
-width: 200px;
-height: 90px;
-position: absolute;
-top: 0px;
-left: 0px;
-border: 2px solid #d3d3d3;
-background: #f3f3f3;
-
-}
-
-
-#navbar{  /*navigation bar*/
- left: 140px;
- top: 0px;
- height: 90px;
- width: 100%;
- position: fixed;
- border: 2px solid #d3d3d3;
-}
-
-#navop1{  /*option: dashboard*/
-width: 120px;
-height: 90px;
-left: 140px;
-top: 2px;
-position: absolute;
-background: "";
-
-}
-
-#navop2{  /*option: A-kun words collection*/
-width: 120px;
-height: 90px;
-left: 260px;
-top: 2px;
-position: absolute;
-background: "";
-
-}
-
-#db{ /*dashboard*/
-width: 2px;
-height: 27px;
-background: #00ccff;
-top: 90px;
-left: 0px;
-position: relative;
-}
-
-#buton1{  /*dashborad: play a game*/
-top: 2px;
-left: 2px;
-position: relative;
-display: none;
-
-}
-#buton2{
-display: none;
-
-}
-
-#buton3{
-display: none;
-
-}
-
-#buton4{
-display: none;
-
-}
-
-</style>
-
-<title>AAA Association</title>
 <body>
-
-<img src = # alt = "AAA logo" id = "pic">
-</img>
-
-
-<canvas id="navbar">
-Your browser does not support the HTML5 canvas tag.</canvas>
-
-<div id= "navop1" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "calldashboard()"><p></br>&nbsp &nbsp &nbsp dashboard</p></div>
-
-<div id= "navop2" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "tiankeng()"><p></br>&nbsp &nbsp &nbsp &nbsp A君语录</p></div>
-
-<div id="db" >
-<button id="buton1" onclick="getscore()">play a game</button>
-<p id="highscore">666</p>
-<input type="text" id="enterscore"></input>
-</div>
-
-
-
-
-
 <script>
-var nevigationbar = document.getElementById("navbar");
-var ctx = nevigationbar.getContext("2d");
-// Create gradient
-var grd = ctx.createLinearGradient(0,0,0,200);
-grd.addColorStop(0,"#d3d3d3");
-grd.addColorStop(1,"white");
-// Fill with gradient
-ctx.fillStyle = grd;
-ctx.fillRect(0,0,99999,150);
-
-function myFunction(){
- alert("you clicked on it!");
-};
-
-
-function getdashboard(obj){
-var d1  = document.getElementById("buton1");
- var id = setInterval(frame, 5);
- var pos = 0;
-  function frame() {
-    if (pos === 700) {
-      d1.style.display = "inline";
-      clearInterval(id);
-      
-    } else {
-      pos += 100; 
-      obj.style.width = pos+'px';
+var xmlhttp;
+function loadXMLDoc("https://raw.githubusercontent.com/kuroyukiasuna/kuroyukiasuna.github.io/master/index.html",cfunc)
+{
+if (window.XMLHttpRequest)
+  {  // code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {   // code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=cfunc;
+xmlhttp.open("GET",https://raw.githubusercontent.com/kuroyukiasuna/kuroyukiasuna.github.io/master/index.html,true);
+xmlhttp.send();
+}
+function myFunction()
+{
+loadXMLDoc("ajax_info.txt",function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
     }
+  });
 }
-};
-
-function hidedashboard(obj){
-var d1  = document.getElementById("buton1");
- var id = setInterval(frame, 5);
-  var pos = 700;
-  function frame() {
-    if (pos === 0) {
-      obj.style.width = 2+'px';
-      d1.style.display = "none";
-       clearInterval(id);
-    } else {
-      pos -= 100; 
-      obj.style.width = pos+'px';
-    }
-}
-};
-
-function calldashboard(){
-var d  = document.getElementById("db");
-if(d.style.width < "700px"){
-getdashboard(d);
-
-}else{
-hidedashboard(d);
-}
-};
-
-function tiankeng(){
-//alert("平哥填坑");
-if (typeof(Storage) !== "undefined") {
-    // Store
-    
-document.getElementById("highscore").innerHTML = localStorage.getItem("highscore");
-    // Retrieve
-   
-} else {
-    document.getElementById("").innerHTML = "Sorry, your browser does not support Web Storage...";
-}
-}
-
-
-
-
-function mOver(obj){
-obj.style.background = "#d3d3d3";
-}
-
-function mOut(obj){
-obj.style.background = "";
-}
-
-function getscore(){
-var score = document.getElementById("enterscore");
-localStorage.setItem("highscore", score.value);
-};
 </script>
 
-</body>
 
+<div id="myDiv"><h2>text</h2></div>
+<button type="button" onclick="myFunction()">Change</button>
+
+</body>
 </html>
