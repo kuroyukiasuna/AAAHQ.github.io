@@ -47,9 +47,9 @@ background: "";
 width: 2px;
 height: 27px;
 background: #d3d3d3;
-top: 90px;
+top: 94.8px;
 left: 0px;
-position: relative;
+position: absolute;
 }
 
 #buton1{  /*dashborad: play a game*/
@@ -189,6 +189,11 @@ function loadYulu() {
 function clearmaincontent(){
  var maintxt = document.getElementById("maincontent");
 maintxt.innerHTML = "";
+var d  = document.getElementById("db");
+if(d.style.width > "3px"){
+ hidedashboard(d);
+}
+
 }
 
 function mOver(obj){
