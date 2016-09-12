@@ -3,7 +3,7 @@
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style>
 #pic{        /*logo*/
-width: 200px;
+width: 140px;
 height: 90px;
 position: absolute;
 top: 0px;
@@ -46,7 +46,7 @@ background: "";
 #db{ /*dashboard*/
 width: 2px;
 height: 27px;
-background: #00ccff;
+background: #d3d3d3;
 top: 90px;
 left: 0px;
 position: relative;
@@ -88,7 +88,7 @@ position: absolute;
 <title>AAA Association</title>
 <body>
 
-<img src = # alt = "AAA logo" id = "pic">
+<img src = # alt = "AAA logo" id = "pic" onclick="clearmaincontent()">
 </img>
 
 
@@ -103,7 +103,7 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 <button id="buton1" onclick="playgame()">play a game</button>
 </div>
 
-<div id="maincontent">
+<div id="maincontent">&nbsp
 </div>
 
 
@@ -176,7 +176,6 @@ alert("平哥填坑");
 
 function loadYulu() {
   var yulutxt = document.getElementById("maincontent");
-if(yulutxt.innerHTML === ""){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -185,10 +184,12 @@ if(yulutxt.innerHTML === ""){
   };
   xhttp.open("GET", "https://raw.githubusercontent.com/kuroyukiasuna/AAA-Association/master/a-kun%20yulu.txt", true);
   xhttp.send();
-}else{
-yulutxt.innerHTML = "";
-}
 };
+
+function clearmaincontent(){
+ var maintxt = document.getElementById("maincontent");
+maintxt.innerHTML = "";
+}
 
 function mOver(obj){
 obj.style.background = "#d3d3d3";
