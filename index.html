@@ -2,7 +2,7 @@
 <html>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style>
-#pic{        <!---logo--->
+#pic{        /*logo*/
 width: 200px;
 height: 90px;
 position: absolute;
@@ -14,7 +14,7 @@ background: #f3f3f3;
 }
 
 
-#navbar{ 
+#navbar{  /*navigation bar*/
  left: 140px;
  top: 0px;
  height: 90px;
@@ -23,7 +23,7 @@ background: #f3f3f3;
  border: 2px solid #d3d3d3;
 }
 
-#navop{
+#navop1{  /*option: dashboard*/
 width: 120px;
 height: 90px;
 left: 140px;
@@ -33,16 +33,29 @@ background: "";
 
 }
 
-#db{
+#navop2{  /*option: A-kun words collection*/
+width: 120px;
+height: 90px;
+left: 260px;
+top: 2px;
+position: absolute;
+background: "";
+
+}
+
+#db{ /*dashboard*/
 width: 2px;
-height: 200px;
+height: 27px;
 background: #00ccff;
 top: 90px;
 left: 0px;
 position: relative;
 }
 
-#buton1{
+#buton1{  /*dashborad: play a game*/
+top: 2px;
+left: 2px;
+position: relative;
 display: none;
 
 }
@@ -66,16 +79,25 @@ display: none;
 <title>AAA Association</title>
 <body>
 
-<img src = # alt = "AAA logo "id = "pic">
+<img src = # alt = "AAA logo" id = "pic">
 </img>
 
 
 <canvas id="navbar">
 Your browser does not support the HTML5 canvas tag.</canvas>
 
-<div id= "navop" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "calldashboard()"><p></br>&nbsp &nbsp &nbsp dashboard</p></div>
+<div id= "navop1" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "calldashboard()"><p></br>&nbsp &nbsp &nbsp dashboard</p></div>
 
-<div id="db" ></div>
+<div id= "navop2" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "tiankeng()"><p></br>&nbsp &nbsp &nbsp &nbsp A君语录</p></div>
+
+<div id="db" >
+<button id="buton1" onclick="getscore()">play a game</button>
+<p id="highscore">666</p>
+<input type="text" id="enterscore"></input>
+</div>
+
+
+
 
 
 <script>
@@ -95,13 +117,14 @@ function myFunction(){
 
 
 function getdashboard(obj){
-
+var d1  = document.getElementById("buton1");
  var id = setInterval(frame, 5);
  var pos = 0;
   function frame() {
     if (pos === 700) {
+      d1.style.display = "inline";
       clearInterval(id);
-
+      
     } else {
       pos += 100; 
       obj.style.width = pos+'px';
@@ -110,12 +133,14 @@ function getdashboard(obj){
 };
 
 function hidedashboard(obj){
+var d1  = document.getElementById("buton1");
  var id = setInterval(frame, 5);
   var pos = 700;
   function frame() {
     if (pos === 0) {
       obj.style.width = 2+'px';
-           clearInterval(id);
+      d1.style.display = "none";
+       clearInterval(id);
     } else {
       pos -= 100; 
       obj.style.width = pos+'px';
@@ -127,10 +152,27 @@ function calldashboard(){
 var d  = document.getElementById("db");
 if(d.style.width < "700px"){
 getdashboard(d);
+
 }else{
 hidedashboard(d);
 }
 };
+
+function tiankeng(){
+//alert("平哥填坑");
+if (typeof(Storage) !== "undefined") {
+    // Store
+    
+document.getElementById("highscore").innerHTML = localStorage.getItem("highscore");
+    // Retrieve
+   
+} else {
+    document.getElementById("").innerHTML = "Sorry, your browser does not support Web Storage...";
+}
+}
+
+
+
 
 function mOver(obj){
 obj.style.background = "#d3d3d3";
@@ -139,6 +181,11 @@ obj.style.background = "#d3d3d3";
 function mOut(obj){
 obj.style.background = "";
 }
+
+function getscore(){
+var score = document.getElementById("enterscore");
+localStorage.setItem("highscore", score.value);
+};
 </script>
 
 </body>
