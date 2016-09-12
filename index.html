@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html>
-<body>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style>
-#dmo {
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  background: #ff0000;
-  top:0px;
-  left: 440px;
-}
-
-#demo{
-width: 440px;
-background: #00ccff;
-}
-
-#finishhat{
-width: 500px;
-height:20px;
-background: #ffffff;
-top: 96px;
-left: 0px;
+#pic{        <!---logo--->
+width: 200px;
+height: 90px;
 position: absolute;
+top: 0px;
+left: 0px;
+border: 2px solid #d3d3d3;
+background: #f3f3f3;
+
+}
+
+
+#navbar{ 
+ left: 140px;
+ top: 0px;
+ height: 90px;
+ width: 100%;
+ position: fixed;
+ border: 2px solid #d3d3d3;
+}
+
+#navop{
+width: 120px;
+height: 90px;
+left: 140px;
+top: 2px;
+position: absolute;
+background: "";
+
 }
 
 #db{
 width: 2px;
 height: 200px;
 background: #00ccff;
-top: 20px;
+top: 90px;
 left: 0px;
 position: relative;
 }
@@ -53,91 +61,46 @@ display: none;
 
 }
 
-#getcolor{
-display: none;
-}
 </style>
 
-<p id="demo">Click the button to change the color to Adrian's hat</p>
+<title>AAA Association</title>
+<body>
 
-<div id="dmo">
-</div>
+<img src = # alt = "AAA logo "id = "pic">
+</img>
 
-<div id = "finishhat">
-<div id="db" >
-<button id="buton1" onclick="myFunction()">Click Me!</button>
-<button id="buton2" onclick="pinggebug()">Don't click!</button>
-<button id="buton3" onclick="clearn()">clear</button>
-<button id="buton4" onclick = "test()"> test </button>
-</br>
-<input type="string" id="getcolor" value = #00f000>
 
-</div>
+<canvas id="navbar">
+Your browser does not support the HTML5 canvas tag.</canvas>
 
-</div>
+<div id= "navop" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "calldashboard()"><p></br>&nbsp &nbsp &nbsp dashboard</p></div>
+
+<div id="db" ></div>
+
+
 <script>
-function myFunction() {
-    var x = document.getElementById("dmo");
-var c = document.getElementById("getcolor");
-var t = document.getElementById("demo");
-var h = document.getElementById("finishhat");
-var d  = document.getElementById("db");
-t.innerHTML = "Adrian! Adrianism! Adrianization!"
-t.style.background = c.value;
-x.style.background = c.value;
-x.style.height = 200+'px';
-x.style.width = 15+'px';
-x.style.top = 16+'px';
-h.style.background = c.value;
-h.style.top = 216 + 'px';
-h.style.height = 20 + 'px';
-d.style.top = 20 + 'px';
-alert("Adrian's color has been changed");
+var nevigationbar = document.getElementById("navbar");
+var ctx = nevigationbar.getContext("2d");
+// Create gradient
+var grd = ctx.createLinearGradient(0,0,0,200);
+grd.addColorStop(0,"#d3d3d3");
+grd.addColorStop(1,"white");
+// Fill with gradient
+ctx.fillStyle = grd;
+ctx.fillRect(0,0,99999,150);
+
+function myFunction(){
+ alert("you clicked on it!");
 };
 
-function pinggebug(){
-alert("congrats, you have enetered pingge's bug");
-if(confirm("do you want to exit?")){
-}else{
-i = 1;
-while(i != 0){
-alert("hahahahahahahahaha");
-i = i - 1;
-}
-}
-};
-
-function clearn(){
-var x = document.getElementById("dmo");
-var t = document.getElementById("demo");
-var h = document.getElementById("finishhat");
-var d  = document.getElementById("db");
-x.style.background = "#ffffff";
-t.style.background = "#ffffff";
-h.style.background = "#ffffff";
-h.style.top = 60 + 'px';
-h.style.height = 1 + 'px';
-db.style.top = 3 + 'px';
-t.innerHTML = "";
-};
 
 function getdashboard(obj){
-var d1  = document.getElementById("buton1");
-var d2  = document.getElementById("buton2");
-var d3  = document.getElementById("buton3");
-var d4  = document.getElementById("buton4");
-var c = document.getElementById("getcolor");
+
  var id = setInterval(frame, 5);
  var pos = 0;
   function frame() {
-    if (pos == 700) {
+    if (pos === 700) {
       clearInterval(id);
-      //obj.innerHTML = "Adrian! Adrianism! Adrianization!";
-      d1.style.display = "inline";
-      d2.style.display = "inline";
-      d3.style.display = "inline";
-      d4.style.display = "inline";
-      c.style.display = "inline";
 
     } else {
       pos += 100; 
@@ -147,22 +110,12 @@ var c = document.getElementById("getcolor");
 };
 
 function hidedashboard(obj){
- var d1  = document.getElementById("buton1");
- var d2  = document.getElementById("buton2");
- var d3  = document.getElementById("buton3");
- var d4  = document.getElementById("buton4");
- var c = document.getElementById("getcolor");
  var id = setInterval(frame, 5);
- var pos = 700;
+  var pos = 700;
   function frame() {
-    if (pos == 0) {
+    if (pos === 0) {
       obj.style.width = 2+'px';
-      d1.style.display = "none";
-      d2.style.display = "none";
-      d3.style.display = "none";
-      d4.style.display = "none";
-      c.style.display = "none";
-      clearInterval(id);
+           clearInterval(id);
     } else {
       pos -= 100; 
       obj.style.width = pos+'px';
@@ -177,19 +130,17 @@ getdashboard(d);
 }else{
 hidedashboard(d);
 }
+};
+
+function mOver(obj){
+obj.style.background = "#d3d3d3";
 }
 
-function test(){
-var d  = document.getElementById("db");
+function mOut(obj){
+obj.style.background = "";
 }
-
 </script>
 
-
-<button onclick="calldashboard()">dashbodrd</button>
-
-
-</input>
-
 </body>
+
 </html>
