@@ -1,38 +1,31 @@
 <!DOCTYPE html>
 <html>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <body>
+
+<p id="demo"></p>
+
+<button type="button" onclick="loadDoc()">get Content</button>
+
 <script>
-var xmlhttp;
-function loadXMLDoc("https://raw.githubusercontent.com/kuroyukiasuna/kuroyukiasuna.github.io/master/index.html",cfunc)
-{
-if (window.XMLHttpRequest)
-  {  // code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
+function loadDoc() {
+  var xhttp;
+  if (window.XMLHttpRequest) {
+    // code for modern browsers
+    xhttp = new XMLHttpRequest();
+    } else {
+    // code for IE6, IE5
+    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
   }
-else
-  {   // code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=cfunc;
-xmlhttp.open("GET",https://raw.githubusercontent.com/kuroyukiasuna/kuroyukiasuna.github.io/master/index.html,true);
-xmlhttp.send();
-}
-function myFunction()
-{
-loadXMLDoc("ajax_info.txt",function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
     }
-  });
+  };
+  xhttp.open("GET", "https://raw.githubusercontent.com/kuroyukiasuna/AAA-Association/master/learning%20git.txt", true);
+
+  xhttp.send();
 }
 </script>
-
-
-<div id="myDiv"><h2>text</h2></div>
-<button type="button" onclick="myFunction()">Change</button>
 
 </body>
 </html>
