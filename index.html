@@ -60,6 +60,9 @@ display: none;
 
 }
 #buton2{
+top: 14px;
+left: 7px;
+position: relative;
 display: none;
 
 }
@@ -100,7 +103,8 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 <div id= "navop2" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "loadYulu()"><p style="text-align: center;"></br>A君语录</p></div>
 
 <div id="db">
-<button id="buton1" onclick="playgame()">play a game</button>
+<button id="buton1" onclick="game()">play a game</button>
+<button id="buton2" onclick="loadHaha()">News-press</button>
 </div>
 
 <div id="maincontent">&nbsp
@@ -128,11 +132,13 @@ function myFunction(){
 
 function getdashboard(obj){
 var d1  = document.getElementById("buton1");
+var d2  = document.getElementById("buton2");
  var id = setInterval(frame, 5);
  var pos = 0;
   function frame() {
     if (pos === 700) {
       d1.style.display = "inline";
+      d2.style.display = "inline";
       clearInterval(id);
       
     } else {
@@ -144,12 +150,14 @@ var d1  = document.getElementById("buton1");
 
 function hidedashboard(obj){
 var d1  = document.getElementById("buton1");
+var d2  = document.getElementById("buton2");
  var id = setInterval(frame, 5);
   var pos = 700;
   function frame() {
     if (pos === 0) {
       obj.style.width = 2+'px';
       d1.style.display = "none";
+ d2.style.display = "none";
        clearInterval(id);
     } else {
       pos -= 100; 
@@ -183,6 +191,18 @@ function loadYulu() {
     }
   };
   xhttp.open("GET", "https://raw.githubusercontent.com/kuroyukiasuna/AAA-Association/master/a-kun%20yulu.txt", true);
+  xhttp.send();
+};
+
+function loadHaha() {
+  var yulutxt = document.getElementById("maincontent");
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      yulutxt.innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "https://raw.githubusercontent.com/kuroyukiasuna/AAA-Association/master/hahaha.txt", true);
   xhttp.send();
 };
 
