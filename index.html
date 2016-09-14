@@ -74,7 +74,54 @@ display: none;
 
 #buton4{
 display: none;
+}
 
+#dishu{
+width: 75px;
+height: 75px;
+position: absolute;
+background: gold;
+display: none;
+
+}
+
+#container {
+  width: 450px;
+  height: 450px;
+  position: absolute;
+top: 90px;
+left: 90px;
+  background: silver;
+border: 10px solid #f3f3f3;
+}
+
+#confirmop{
+width: 120px;
+height: 90px;
+top: 90px;
+left: 560px;
+position: absolute;
+background: #f3f3f3;
+display: block;
+
+}
+
+#gameoptions{
+ position: absolute;
+ top: 54px;
+ left: 90px;
+}
+
+#howtoplay{
+position: absolute;
+top: 20px;
+left: 90px;
+}
+
+#warning1{
+position: absolute;
+top: 570px;
+left: 90px;
 }
 
 #maincontent{
@@ -83,8 +130,8 @@ height: 100%;
 top: 147px;
 left: 0px;
 position: absolute;
-
 }
+
 
 </style>
 
@@ -103,12 +150,15 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 <div id= "navop2" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "loadYulu()"><p style="text-align: center;"></br>A君语录</p></div>
 
 <div id="db">
-<button id="buton1" onclick="game()">play a game</button>
+<button id="buton1" onclick="loadgame()">play a game</button>
 <button id="buton2" onclick="loadHaha()">News-press</button>
 </div>
 
 <div id="maincontent">&nbsp
 </div>
+
+
+
 
 
 
@@ -213,8 +263,7 @@ var d  = document.getElementById("db");
 if(d.style.width > "3px"){
  hidedashboard(d);
 }
-
-}
+};
 
 function mOver(obj){
 obj.style.background = "#d3d3d3";
@@ -223,6 +272,79 @@ obj.style.background = "#d3d3d3";
 function mOut(obj){
 obj.style.background = "";
 };
+
+var score = 0;
+var highscore = 0;
+
+function scoreplus(){
+ score = score + 1;
+ var para = document.getElementById("count");
+ para.innerHTML = score;
+};
+
+function loadgame(){
+ var yulutxt = document.getElementById("maincontent");
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      yulutxt.innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "https://raw.githubusercontent.com/kuroyukiasuna/AAA-Association/master/texts/gamecontent.txt", true);
+  xhttp.send();
+};
+
+function game(){
+var para = document.getElementById("count");
+var confirmop = document.getElementById("confirmop");
+var para2 = document.getElementById("highcount");
+var gamebutton = document.getElementById("callgame");
+var dishu = document.getElementById("dishu");
+confirmop.style.display = "none";
+dishu.style.display = "block";
+para2.innerHTML = highscore;
+
+var dtop = 0;
+var dleft = 0;
+var timer = 0;
+score = 0;
+  var id = setInterval(frame, 900);
+  function frame() {
+    if (timer == 10) {
+dishu.style.display = "none";
+confirmop.style.display = "block";
+ if(score > highscore){
+ highscore = score;
+para2.innerHTML = highscore+ "&nbsp new highscore!";
+}else{
+para2.innerHTML = highscore+ "&nbsp play again?";
+}
+
+     gamebutton.innerHTML = "</br>play again";
+ para.innerHTML = score;
+      clearInterval(id);
+    } else {
+      timer++; 
+      dtop = Math.floor((Math.random() * 375));
+      dleft = Math.floor((Math.random() * 375));
+      dishu.style.top = dtop + 'px'; 
+      dishu.style.left = dleft + 'px'; 
+    }
+  }
+
+};
+
+function cleargame(){
+ var maintxt = document.getElementById("maincontent");
+maintxt.innerHTML = "&nbsp";
+score = 0;
+};
+
+function gethighscore(){
+var para2 = document.getElementById("highcount");
+para2.innerHTML = highscore;
+};
+
 
 
 </script>
