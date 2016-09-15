@@ -10,6 +10,7 @@ top: 0px;
 left: 0px;
 border: 2px solid #d3d3d3;
 background: #f7f7f7;
+cursor: pointer;
 
 }
 
@@ -27,20 +28,40 @@ background: #f7f7f7;
 width: 120px;
 height: 90px;
 left: 144.3px;
-top: 2px;
+top: 3px;
 position: absolute;
 background: "";
-
+cursor: pointer;
 }
 
 #navop2{  /*option: A-kun words collection*/
 width: 120px;
 height: 90px;
 left: 264.3px;
+top: 3px;
+position: absolute;
+background: "";
+cursor: pointer;
+}
+
+#navop3{  /*Member List*/
+width: 120px;
+height: 90px;
+left: 384.3px;
 top: 2px;
 position: absolute;
 background: "";
+cursor: pointer;
+}
 
+#navop4{  /*in coorpration with*/
+width: 120px;
+height: 90px;
+left: 504.3px;
+top: 2px;
+position: absolute;
+background: "";
+cursor: pointer;
 }
 
 #db{ /*dashboard*/
@@ -133,21 +154,64 @@ position: absolute;
 }
 
 
+.dropbtn {
+    background-color: transparent;
+    color: black;
+    width: 120px;
+    height: 90px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content div {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #d3d3d3;
+}
+
+
 </style>
 
 <title>AAA Association</title>
 <body>
 
-<img src= "https://raw.githubusercontent.com/kuroyukiasuna/AAA-Association/master/pic/AAAlogo2.png" alt = "AAA logo" id = "pic" onclick="clearmaincontent()">
+<img src= "https://raw.githubusercontent.com/kuroyukiasuna/AAA-Association/master/pic/AAAlogo2.png" alt = "AAA logo" id = "pic" onclick="toMaincontent()">
 </img>
 
 
 <canvas id="navbar">
 Your browser does not support the HTML5 canvas tag.</canvas>
 
-<div id= "navop1" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "calldashboard()"><p style="text-align: center;"></br>dashboard</p></div>
+<div id= "navop1" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "calldashboard()"><div style="text-align: center;"></br></br>dashboard</div></div>
 
-<div id= "navop2" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "loadYulu()"><p style="text-align: center;"></br>A君语录</p></div>
+<div id= "navop2" onmouseover="mOver(this)" onmouseout="mOut(this)"  onclick = "loadYulu()"><div style="text-align: center;"></br></br>A君语录</div></div>
+
+
+<!---<div id= "navop4" onmouseover="mOver(this)" onmouseout="mOut(this)" ><div style="text-align: center;"></br></br>合作单位</div></div>--->
 
 <div id="db">
 <button id="buton1" onclick="loadgame()">play a game</button>
@@ -155,6 +219,30 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 </div>
 
 <div id="maincontent">&nbsp
+</div>
+
+<div id="navop3" class="dropdown">
+  <div class="dropbtn"><div style="text-align: center;"></br></br>成员列表</div></div>
+
+  <div class="dropdown-content">
+    <div onmouseover="mOver(this)" onmouseout="mOut(this)" >A君</div>
+    <div onmouseover="mOver(this)" onmouseout="mOut(this)" onclick="loadpinggeintro()">平哥</div>
+    <div onmouseover="mOver(this)" onmouseout="mOut(this)" >嘉明</div>
+    <div onmouseover="mOver(this)" onmouseout="mOut(this)" >哲凯</div>
+    <div onmouseover="mOver(this)" onmouseout="mOut(this)" >党某</div>
+	<div onmouseover="mOver(this)" onmouseout="mOut(this)" >Stephen</div>
+    <div onmouseover="mOver(this)" onmouseout="mOut(this)" >饺子</div>
+
+  </div>
+</div>
+
+<div id="navop4" class="dropdown">
+  <div class="dropbtn"><div style="text-align: center;"></br></br>合作单位</div></div>
+
+  <div class="dropdown-content">
+    <div onmouseover="mOver(this)" onmouseout="mOut(this)"onclick="loadbaixueintro()" >白学研究会</div>
+
+  </div>
 </div>
 
 
@@ -179,6 +267,21 @@ function myFunction(){
  alert("you clicked on it!");
 };
 
+function toMaincontent(){
+var yulutxt = document.getElementById("maincontent");
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      yulutxt.innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "https://raw.githubusercontent.com/kuroyukiasuna/AAA-Association/master/texts/AAAintro.txt", true);
+  xhttp.send();
+};
+toMaincontent();
+window.onbeforeunload = function () {
+  window.scrollTo(0,0);
+};
 
 function getdashboard(obj){
 var d1  = document.getElementById("buton1");
@@ -253,6 +356,30 @@ function loadHaha() {
     }
   };
   xhttp.open("GET", "https://raw.githubusercontent.com/kuroyukiasuna/AAA-Association/master/texts/hahaha.txt", true);
+  xhttp.send();
+};
+
+function loadpinggeintro() {
+  var yulutxt = document.getElementById("maincontent");
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      yulutxt.innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "https://raw.githubusercontent.com/kuroyukiasuna/AAA-Association/master/texts/pinggeintro.txt", true);
+  xhttp.send();
+};
+
+function loadbaixueintro() {
+  var yulutxt = document.getElementById("maincontent");
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      yulutxt.innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "https://raw.githubusercontent.com/kuroyukiasuna/AAA-Association/master/texts/whiteologyintro.txt", true);
   xhttp.send();
 };
 
