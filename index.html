@@ -227,7 +227,7 @@ Your browser does not support the HTML5 canvas tag.</canvas>
   <div class="dropdown-content">
     <div onmouseover="mOver(this)" onmouseout="mOut(this)" >A君</div>
     <div onmouseover="mOver(this)" onmouseout="mOut(this)" onclick="loadpinggeintro()">平哥</div>
-    <div onmouseover="mOver(this)" onmouseout="mOut(this)" >嘉明</div>
+    <div onmouseover="mOver(this)" onmouseout="mOut(this)" onclick="loadjiamingintro()">嘉明</div>
     <div onmouseover="mOver(this)" onmouseout="mOut(this)" >哲凯</div>
     <div onmouseover="mOver(this)" onmouseout="mOut(this)" >党某</div>
 	<div onmouseover="mOver(this)" onmouseout="mOut(this)" >Stephen</div>
@@ -368,6 +368,18 @@ function loadpinggeintro() {
     }
   };
   xhttp.open("GET", "https://raw.githubusercontent.com/kuroyukiasuna/AAA-Association/master/texts/pinggeintro.txt", true);
+  xhttp.send();
+};
+
+function loadjiamingintro() {
+  var yulutxt = document.getElementById("maincontent");
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      yulutxt.innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "https://raw.githubusercontent.com/kuroyukiasuna/AAA-Association/master/texts/jiamingintro.txt", true);
   xhttp.send();
 };
 
